@@ -3308,7 +3308,8 @@
     "net6.0": [
       "Microsoft.AspNetCore.Session >= 2.2.0",
       "Microsoft.EntityFrameworkCore.Design >= 7.0.13",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.13"
+      "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.13",
+      "Microsoft.Extensions.Caching.Memory >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -3363,6 +3364,10 @@
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[7.0.13, )"
+          },
+          "Microsoft.Extensions.Caching.Memory": {
+            "target": "Package",
+            "version": "[7.0.0, )"
           }
         },
         "imports": [
