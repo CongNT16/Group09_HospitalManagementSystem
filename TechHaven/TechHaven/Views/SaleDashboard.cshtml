@@ -1,0 +1,166 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@* for Session *@
+@using Microsoft.AspNetCore.Http;
+@using Microsoft.AspNetCore.Html;
+@using PRN221_Project_ShopOnline.Models;
+@using System.Diagnostics
+@using System.Web
+
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    double numAcc = ViewBag.NumAcc;
+    double numProd = ViewBag.NumProd;
+    double numOrd = ViewBag.NumOrd;
+    List<Product> mostSellProds = ViewBag.MostSellProd;
+    List<Product> prodCat = ViewBag.ProdPerCate;
+
+    int totalRevenue = ViewBag.TotalRevenue;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="image/faviconLogo.png" />
+    <title>Computer ERA</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <!--Custom Style-->
+    <link rel="stylesheet" href="~/css/ProductManager.css" />
+
+    <!--Custom Script-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+         google.charts.load('current', {'packages': ['corechart']});
+         google.charts.setOnLoadCallback(drawChart);
+         function drawChart() {
+         var data = google.visualization.arrayToDataTable([
+             ['Task', 'Hours Per day'],
+        @foreach (Product item in prodCat)
+        {
+            @:['@Html.Raw(HttpUtility.JavaScriptStringEncode(item.ProductName))', @item.Amount],
+        }
+        ]);
+         var options = {
+         title: 'Percentage of product by category'
+         };
+         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+         chart.draw(data, options);
+         }
+    </script>
+</head>
+<body>
+
+    @Html.Partial("MenuBar")
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row" style="margin-top: 20px;">
+                    <div class="col-4" id="borderCard">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <a href="#" style="text-decoration: none;"><img src="image/Other/AccountDashboard.jpg" alt="" id="headerImage" width="250px" /></a>
+                                </div>
+                                <div class="col-md-12" id="dashboardCard">
+                                    <div class="card-body">
+                                        <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Accounts</h5></a>
+                                        <a href="accountManager" style="text-decoration: none;"><h5 class="card-title" id="amount">@numAcc</h5></a>
+                                        <a href="accountManager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" id="borderCard">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <a href="#" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" id="headerImage" width="250px" /></a>
+                                </div>
+                                <div class="col-md-12" id="dashboardCard">
+                                    <div class="card-body">
+                                        <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Products</h5></a>
+                                        <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="amount">@numProd</h5></a>
+                                        <a href="manager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" id="borderCard">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <a href=""><img src="image/Other/InvoiceDashboard.jpg" alt="" id="headerImage" width="250px" /></a>
+                                </div>
+                                <div class="col-md-12" id="dashboardCard">
+                                    <div class="card-body">
+                                        <a style="text-decoration: none;" href="viewAllInvoicesAdmin"><h5 class="card-title" id="total">Total Invoices</h5></a>
+                                        <a style="text-decoration: none;" href="viewAllInvoicesAdmin"><h5 class="card-title" id="amount">@numOrd</h5></a>
+                                        <a style="text-decoration: none;" href="viewAllInvoicesAdmin"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4" id="borderCard">
+                        <div class="card mb-3" style="max-width: 540px;">
+                            <div class="row g-0">
+                                <div class="col-md-12">
+                                    <a href="manager" style="text-decoration: none;"><img src="image/Other/ProductDashboard.jpg" alt="" id="headerImage" width="250px" /></a>
+                                </div>
+                                <div class="col-md-12" id="dashboardCard">
+                                    <div class="card-body">
+                                        <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="total">Total Revenue</h5></a>
+                                        <a href="manager" style="text-decoration: none;"><h5 class="card-title" id="amount">@totalRevenue</h5></a>
+                                        <a href="manager" style="text-decoration: none;"><p class="card-text"><small class="text-muted">Last updated 1 mins ago</small></p></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                </div>
+                <div class="row">
+                    <div>
+                        <h3>Most Selling Product</h3>
+                        <table>
+                            @{
+                                foreach (Product p in mostSellProds)
+                                {
+                                    <tr>
+                                        <td><img src="/image/@p.ImageLink" class="card-img-top" alt="..." style="max-width: 150px;"></td>
+                                        <td><h6>@p.ProductName</h6></td>
+                                    </tr>
+                                }
+                            }
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+</body>
+</html>
+
