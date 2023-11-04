@@ -1,0 +1,14 @@
+﻿/*Search*/
+#searchBar {
+    display: inline;
+    width: 300px;
+}
+
+#searchButton {
+    display: inline;
+}
+
+/*Other*/
+#logo {
+    width: 200px;
+}
