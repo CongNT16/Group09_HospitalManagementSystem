@@ -1,0 +1,108 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@using PRN221_Project_ShopOnline.Models
+
+@* for Session *@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+
+@{
+    //Get data from ViewBag
+    List<Category> categories = (List<Category>)ViewBag.Categories;
+    List<Product> products = (List<Product>)ViewBag.Products;
+    int selectedCategory = ViewBag.SelectedCategory;
+
+    //Message from Add to Cart (if has)
+    string addToCartMessage = ViewBag.AddToCartMessage;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Computer ERA</title>
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="/image/faviconLogo.png" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!--Font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <!--Custom Style-->
+    <link rel="stylesheet" href="~/css/Index.css" />
+
+    <!--Custom Script-->
+    <script>
+        @*Display Message if has *@
+        let message = '@addToCartMessage';
+        if (message != '') {
+            alert(message);
+            //Back to Home Page
+            window.location.href = "/";
+        }
+    </script>
+</head>
+<body>
+    <!--Menu-->
+    @Html.Partial("MenuBarWithSearch")
+
+    <div class="container">
+
+        <div class="row">
+            <section class="jumbotron text-center" style="background-color: white;">
+                <div class="container">
+                    <h1 class="jumbotron-heading"><img src="/image/MainLogo.png" alt="Main Logo" width="60%" /></h1>
+                    <p class="lead text-muted mb-0">Điện thoại, Tablet, Laptop, Phụ kiện chính hãng giá tốt...</p>
+                </div>
+            </section>
+        </div>
+        <br />
+
+        <div class="row">
+            <!--Category-->
+            <div class="col-3">
+                <div class="card bg-light mb-3">
+                    <div class="card-header bg-info text-white text-uppercase"><i class="fa fa-list"></i> Categories</div>
+                    <ul class="list-group category_block" style="list-style-type:none">
+                        @foreach (Category category in categories)
+                        {
+                            <li>
+                                @* display differently if category is selected *@
+                                <a class="list-group-item @(category.CategoryId == selectedCategory ? "active" : "")"
+                                   href="/Default/FindProductByCategory/@category.CategoryId">
+                                    <i class="@category.Icon"></i> @category.CategoryName
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <!--Products-->
+            <div class="col-sm-9">
+                <div class="row">
+                    @foreach (Product product in products)
+                    {
+                        <div class="col-12 col-md-6 col-lg-4">
+                            <div class="card" style="width: 18rem;">
+                                <a href="/ProductDetail/Index?ProductID=@product.ProductId">
+                                    <img src="/image/@product.ImageLink" class="card-img-top" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <a href="/ProductDetail/Index?ProductID=@product.ProductId" title="View Product">@product.ProductName</a>
+                                    </h5>
+                                    <p class="card-text">VND @product.GetPriceWithDot()</p>
+                                    <a href="/Cart/AddToCart?ProductId=@product.ProductId" class="btn btn-primary">Add to Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
