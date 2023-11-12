@@ -71,7 +71,7 @@ namespace HMS
 				.WithMany(d => d.Prescriptions)
 				.HasForeignKey(a => a.PatientId);
 
-			modelBuilder.Entity<Appointment>()
+            modelBuilder.Entity<Appointment>()
 				.HasOne(a => a.Patient)
 				.WithMany(d => d.Appointments)
 				.HasForeignKey(a => a.PatientId);

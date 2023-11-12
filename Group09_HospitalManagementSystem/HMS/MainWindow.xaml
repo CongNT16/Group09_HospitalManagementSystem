@@ -47,7 +47,7 @@
                     </StackPanel>
                     <StackPanel VerticalAlignment="Center">
                         <Image Source="Images/hosp.png" Width="80"/>
-                        <TextBlock Text="USER LOGIN"
+                        <TextBlock Text="LOGIN"
                            FontWeight="Heavy"
                            FontFamily="helvetica"
                            FontSize="22"
@@ -137,7 +137,7 @@
                     <StackPanel Grid.Row="3" Margin ="5">
 
                         <TextBlock Text="Hospital Management System" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Group09-SE1627" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Group 09 - SE1627" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
 
                     </StackPanel>
                 </Grid>

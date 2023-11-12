@@ -19,7 +19,6 @@
 
 
         <!--Hint-->
-        <TextBlock Text="* Note : Prescriptions can be Added in the Patients tab" Foreground="Blue"/>
 
         <!--Data-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" IsReadOnly="True"

@@ -18,7 +18,6 @@
                                        DockPanel.Dock="Top" TextAlignment="Center" />
 
         <!--Hint-->
-        <TextBlock Text="* Note : Billings are automatically calculated based on each patients's purchases" Foreground="Blue"/>
         <!--Data-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" IsReadOnly="True"
                    RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" ItemsSource="{Binding BillsData}" AutoGenerateColumns="False" MaxHeight="380">
