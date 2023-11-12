@@ -18,7 +18,7 @@
         <vm:NormalUserWindowVM/>
     </Window.DataContext>
 
-    <Border Background="#eff2f7" CornerRadius="30" MouseDown="Border_Mousedown" MouseLeftButtonDown="Border_MouseLeftButtondown">
+    <Border Background="#eff2f7"  MouseDown="Border_Mousedown" MouseLeftButtonDown="Border_MouseLeftButtondown">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200"/>
@@ -33,25 +33,17 @@
                 </Grid.RowDefinitions>
 
                 <!--Menu Icon-->
-                <Button  Margin="20 28 0 35" Style="{StaticResource topButton}">
-                    <icon:PackIconMaterial Kind="Menu" Width="15" Height="15"/>
-                </Button>
+                
+                
 
-                <Border Grid.Row="1" Background="#394867" CornerRadius="0 50 30 0">
+                <Border Grid.Row="1" Background="#394867" >
                     <DockPanel>
-                        <Border Width="80" Height="80" Padding="3" Background="White" 
-                                CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
-                            <Ellipse>
-                                <Ellipse.Fill>
-                                    <ImageBrush ImageSource="/Images/hospitalLogo.png"/>
-                                </Ellipse.Fill>
-                            </Ellipse>
-                        </Border>
+                        
 
                         <!--Menu Titles-->
-                        <TextBlock Text="City Hospital" Foreground="White" FontSize="22" FontWeight="SemiBold"
+                        <TextBlock Text="FPT Hospital" Foreground="White" FontSize="22" FontWeight="SemiBold"
                                        DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
-                        <TextBlock Text="Colombo, Sri Lanka" Foreground="#9BA4B5" FontSize="14" FontWeight="SemiBold"
+                        <TextBlock Text="Hola" Foreground="#9BA4B5" FontSize="14" FontWeight="SemiBold"
                                        DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu Separator-->

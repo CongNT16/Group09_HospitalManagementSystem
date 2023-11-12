@@ -21,7 +21,7 @@
                                        DockPanel.Dock="Top" TextAlignment="Center" />
 
         <!--Hint-->
-        <TextBlock Text="* Note : Available Drugs and Tests are added by Admin" Foreground="Blue"/>
+        
         <Grid>
             <Border 
                 CornerRadius="10"
@@ -198,80 +198,6 @@
                     </Grid>
 
 
-
-
-                    <!--Available Drugs-->
-                    <Border Grid.Column="1" CornerRadius="20" Padding="0 25"
-                            Background="#394867" Margin="4,10,20,10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="125*"/>
-                                <ColumnDefinition Width="113*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Orientation="Horizontal" Margin="20 0 0 5" Grid.ColumnSpan="2">
-                                <fa2:IconImage Icon="Circle" Style="{StaticResource titleIcon}"/>
-                                <TextBlock Text="Available Drugs" Style="{StaticResource titleText}"/>
-                            </StackPanel>
-
-                            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Height = "320" VerticalScrollBarVisibility = "Auto" HorizontalScrollBarVisibility="Disabled" >
-                                <StackPanel >
-                                    <ListView x:Name="DrugList" ItemsSource="{Binding DrugsData}" Background="#243771" ScrollViewer.CanContentScroll="True">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <uc:Order Title="{Binding TradeName}" 
-                                          Desc="{Binding GenericName}"
-                                          Icon="Pills"/>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-
-                                </StackPanel>
-                            </ScrollViewer>
-                        </Grid>
-                    </Border>
-
-                    <!--Available Tests-->
-                    <Border Grid.Column="3" CornerRadius="20" Padding="0 25"
-                            Background="#394867" Margin="20,10,20,10">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="19*"/>
-                                <ColumnDefinition Width="106*"/>
-                                <ColumnDefinition Width="112*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel Orientation="Horizontal" Margin="1,0,0,5" Grid.ColumnSpan="2" Grid.Column="1">
-                                <fa2:IconImage Icon="Circle" Style="{StaticResource titleIcon}"/>
-                                <TextBlock Text="Available Tests" Style="{StaticResource titleText}"/>
-                            </StackPanel>
-
-
-                            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="3" Height = "320" VerticalScrollBarVisibility = "Auto" Margin="0,12,0,12">
-                                <StackPanel>
-                                    <ListView ItemsSource="{Binding TestsData}" Background="#243771">
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <uc:Order Title="{Binding TestName}" 
-                                          Desc="{Binding Description}"
-                                          Icon="FileContract"/>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-
-                                </StackPanel>
-                            </ScrollViewer>
-
-                        </Grid>
-                    </Border>
 
 
 

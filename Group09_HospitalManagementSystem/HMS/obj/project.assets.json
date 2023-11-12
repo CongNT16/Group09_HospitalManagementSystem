@@ -3735,11 +3735,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\FPT\\PRN221\\HospitalManagementSystem v3\\Group09_HospitalManagementSystem\\HMS\\HMS.csproj",
+      "projectUniqueName": "D:\\FPT\\PRN221\\Group09_HospitalManagementSystem\\Group09_HospitalManagementSystem\\HMS\\HMS.csproj",
       "projectName": "HMS",
-      "projectPath": "D:\\FPT\\PRN221\\HospitalManagementSystem v3\\Group09_HospitalManagementSystem\\HMS\\HMS.csproj",
+      "projectPath": "D:\\FPT\\PRN221\\Group09_HospitalManagementSystem\\Group09_HospitalManagementSystem\\HMS\\HMS.csproj",
       "packagesPath": "C:\\Users\\tuyet\\.nuget\\packages\\",
-      "outputPath": "D:\\FPT\\PRN221\\HospitalManagementSystem v3\\Group09_HospitalManagementSystem\\HMS\\obj\\",
+      "outputPath": "D:\\FPT\\PRN221\\Group09_HospitalManagementSystem\\Group09_HospitalManagementSystem\\HMS\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\tuyet\\AppData\\Roaming\\NuGet\\NuGet.Config",

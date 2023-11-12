@@ -72,7 +72,7 @@
                              Height="25"
                              Margin="63,0,0,0" 
                              GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"
-                            Text="Username"
+                             Text=""
                              TextChanged="TextBox_TextChanged"/>
 
                             <iconPacks:PackIconMaterial Kind="Account" 
@@ -136,8 +136,8 @@
 
                     <StackPanel Grid.Row="3" Margin ="5">
 
-                        <TextBlock Text="Admin -> Username : Bond, Password : 16969" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
-                        <TextBlock Text="Regular -> Username : pasan, Password : 6969" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Hospital Management System" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
+                        <TextBlock Text="Group09-SE1627" Foreground="#9BA4B5" HorizontalAlignment="Center"/>
 
                     </StackPanel>
                 </Grid>

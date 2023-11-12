@@ -28,7 +28,7 @@ namespace HMS.MVVM.View
 
         private void MyView_Loaded(object sender, RoutedEventArgs e)
         {
-            DrugList.Focus();
+            //DrugList.Focus();
         }
     }
 
