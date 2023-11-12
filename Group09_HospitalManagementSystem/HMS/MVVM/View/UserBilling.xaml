@@ -24,11 +24,11 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn Binding="{Binding Id}" Header="# ID"/>
+                <DataGridTextColumn Binding="{Binding Patient.FullName}" Header="Patient Name"/>
                 <DataGridTextColumn Binding="{Binding BillAmount}" Header="Bill Amount"/>
                 <DataGridTextColumn Binding="{Binding PaymentMode}" Header="Payment Mode"/>
                 <DataGridTextColumn Binding="{Binding Status}" Header="Is Paid"/>
                 <DataGridTextColumn Binding="{Binding PaymentDate}" Header="Payment Date"/>
-                <DataGridTextColumn Binding="{Binding PatientId}" Header="Patient Id"/>
 
             </DataGrid.Columns>
         </DataGrid>

@@ -23,8 +23,8 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="# ID"/>
                 <DataGridTextColumn Binding="{Binding AppointedDate}" Header="Appointment Date"/>
-                <DataGridTextColumn Binding="{Binding DoctorId}" Header="Doctor ID"/>
-                <DataGridTextColumn Binding="{Binding PatientId}" Header="Patient ID"/>
+                <DataGridTextColumn Binding="{Binding Doctor.Name}" Header="Doctor Name"/>
+                <DataGridTextColumn Binding="{Binding Patient.FullName}" Header="Patient Name"/>
 
                 <DataGridTemplateColumn Width="140" Header="Action">
                     <DataGridTemplateColumn.CellTemplate>
