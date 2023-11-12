@@ -42,8 +42,42 @@ namespace HMS.MVVM.ViewModel
             Read();
 		}
 
-		// Delete d rugcommand using prism core package
-		private DelegateCommand<Drug> _deleteDrugCommand;
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _drugsData.Clear();
+                var query = from dru in context.Drugs
+                            where dru.GenericName.Contains(SearchText) || dru.TradeName.Contains(SearchText)
+                            select dru;
+
+                foreach (var dru in query)
+                {
+                    _drugsData.Add(dru);
+                }
+            }
+        }
+
+        // Delete d rugcommand using prism core package
+        private DelegateCommand<Drug> _deleteDrugCommand;
 		public DelegateCommand<Drug> DeleteDrugCommand =>
 			_deleteDrugCommand ?? (_deleteDrugCommand = new DelegateCommand<Drug>(ExecuteDeleteDrugCommand));
 

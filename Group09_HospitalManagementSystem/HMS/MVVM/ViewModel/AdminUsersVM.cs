@@ -45,9 +45,43 @@ namespace HMS.MVVM.ViewModel
             Read();
 		}
 
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
-		// Delete doctor command using prism core package
-		private DelegateCommand<User> _deleteUserCommand;
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _usersData.Clear();
+                var query = from use in context.Users
+                            where use.UserName.Contains(SearchText)
+                            select use;
+
+                foreach (var use in query)
+                {
+                    _usersData.Add(use);
+                }
+            }
+        }
+
+
+        // Delete doctor command using prism core package
+        private DelegateCommand<User> _deleteUserCommand;
 		public DelegateCommand<User> DeleteUserCommand =>
 			_deleteUserCommand ?? (_deleteUserCommand = new DelegateCommand<User>(ExecuteDeleteUserCommand));
 

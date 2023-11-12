@@ -133,9 +133,9 @@
                             </Ellipse>
                         </Border>
                         <StackPanel Margin="10 0 0 0">
-                            <TextBlock Text="Pasan" Foreground="#394867" FontSize="14" FontWeight="SemiBold"
+                            <TextBlock Text="{Binding CurrentUser.UserName, RelativeSource={RelativeSource AncestorType=Window}}" Foreground="#394867" FontSize="14" FontWeight="SemiBold"
                                        DockPanel.Dock="Top" />
-                            <TextBlock Text="Regular User" Foreground="#9BA4B5" FontSize="14" FontWeight="SemiBold"
+                            <TextBlock Text="Patients Management" Foreground="#9BA4B5" FontSize="14" FontWeight="SemiBold"
                                        DockPanel.Dock="Top" />
                         </StackPanel>
 

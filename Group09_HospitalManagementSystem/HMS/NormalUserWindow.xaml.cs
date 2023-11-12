@@ -16,12 +16,13 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using HMS.MVVM.Model.Authentication;
 
 namespace HMS
 {
-	/// <summary>
-	/// Interaction logic for NormalUserWindow.xaml
-	/// </summary>
+    /// <summary>
+    /// Interaction logic for NormalUserWindow.xaml
+    /// </summary>
 	public partial class NormalUserWindow : Window
 	{
 		private void Border_Mousedown(object sender, MouseButtonEventArgs e)
@@ -37,14 +38,13 @@ namespace HMS
 			
 		}
 
-		public NormalUserWindow()
-		{
-            //var guideWindow = new NormalUserGuideWindow();
-			//guideWindow.Topmost = true;
-            //guideWindow.Show();
+        public User CurrentUser { get; set; }
 
+        public NormalUserWindow(User user)
+		{
+            CurrentUser = user;
             DataContext = new NormalUserWindowVM();
-			InitializeComponent();
+            InitializeComponent();
 
         }
 

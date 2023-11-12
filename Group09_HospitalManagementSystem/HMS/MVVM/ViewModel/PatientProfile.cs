@@ -186,7 +186,7 @@ namespace HMS.MVVM.ViewModel
 				{
 					_docFee += context.Doctors.Single(x => x.Id == app.DoctorId).Fee;
 				}
-				DoctorFee = $"Doctor Fee             : LKR {_docFee}";
+				DoctorFee = $"Doctor Fee             : VND {_docFee}";
 
 				double _testFee = 0;
                 var allMedicalTests = context.MedicalTests.ToList();
@@ -200,11 +200,11 @@ namespace HMS.MVVM.ViewModel
                     }
                 }
 
-                TestFee = $"Test Fee                  : LKR {_testFee}";
+                TestFee = $"Test Fee                  : VND {_testFee}";
 
-				HospitalFee = $"Hospital Fee (10%) : LKR {(_docFee + _testFee) * 0.1}";
+				HospitalFee = $"Hospital Fee (10%) : VND {(_docFee + _testFee) * 0.1}";
 
-				TotalFee = $"Total Fee                 : LKR {_docFee + _testFee + (_docFee + _testFee) * 0.1}";
+				TotalFee = $"Total Fee                 : VND {_docFee + _testFee + (_docFee + _testFee) * 0.1}";
 
 
 				Random random = new Random();

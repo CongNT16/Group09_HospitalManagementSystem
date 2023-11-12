@@ -24,21 +24,68 @@ namespace HMS
 	{
 		public List<User> allUsers;
 
-		public string isRegisteredUser(string enteredUserName, string enteredUserPassword)
-		{
-			string result = "not_a_user";
-			foreach (var user in allUsers)
-			{
-				if (user.UserName == enteredUserName && user.Password == enteredUserPassword)
-				{
-					result = "normal_user";
-					if (user.IsSuperUser) result = "super_user";
-					return result;
-				}
-			}
-			return result;
-		}
-		private void Border_Mousedown(object sender, MouseButtonEventArgs e)
+        public MainWindow()
+        {
+            InitializeComponent();
+            using (DataContext context = new DataContext())
+            {
+                allUsers = context.Users.ToList();
+            }
+        }
+
+        public string IsRegisteredUser(string enteredUserName, string enteredUserPassword)
+        {
+            User user = allUsers.FirstOrDefault(u => u.UserName == enteredUserName && u.Password == enteredUserPassword);
+            return user != null ? (user.IsSuperUser ? "super_user" : "normal_user") : "not_a_user";
+        }
+
+        private void loginClick(object sender, RoutedEventArgs e)
+        {
+            string password;
+            using (SecureString inputPassword = userPassword.SecurePassword)
+            {
+                IntPtr unmanagedString = IntPtr.Zero;
+                try
+                {
+                    unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(inputPassword);
+                    password = Marshal.PtrToStringUni(unmanagedString);
+                }
+                finally
+                {
+                    Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
+                }
+            }
+
+            User user = allUsers.FirstOrDefault(u => u.UserName == userName.Text && u.Password == password);
+
+            if (user != null)
+            {
+                switch (user.IsSuperUser ? "super_user" : "normal_user")
+                {
+                    case "not_a_user":
+                        var messageWindow = new WarningMessageWindow("Please enter valid UserName & Password!");
+                        messageWindow.ShowDialog();
+                        break;
+
+                    case "normal_user":
+                        new NormalUserWindow(user).Show();
+                        Close();
+                        break;
+
+                    case "super_user":
+                        new AdminWindow(user).Show();
+                        Close();
+                        break;
+                }
+            } else
+            {
+                var messageWindow = new WarningMessageWindow("Please enter valid UserName & Password!");
+                messageWindow.ShowDialog();
+            }
+        }
+
+
+        private void Border_Mousedown(object sender, MouseButtonEventArgs e)
 		{
 			if (e.ChangedButton == MouseButton.Left)
 			{
@@ -68,20 +115,7 @@ namespace HMS
 		{
 			Application.Current.Shutdown();
 		}
-		public MainWindow()
-		{
-			InitializeComponent();
-			allUsers = new List<User> { };
-			using (DataContext context = new DataContext())
-			{
-				foreach (var usr in context.Users)
-				{
-					allUsers.Add(usr);
-				}
-			}
-
-		}
-
+		
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
@@ -107,45 +141,7 @@ namespace HMS
 
 		}
 
-		private void loginClick(object sender, RoutedEventArgs e)
-		{
-			SecureString inputPassword = userPassword.SecurePassword;
-
-			IntPtr unmanagedString = IntPtr.Zero;
-			string password = null;
-
-			try
-			{
-				unmanagedString = Marshal.SecureStringToGlobalAllocUnicode(inputPassword);
-				password = Marshal.PtrToStringUni(unmanagedString);
-			}
-			finally
-			{
-				Marshal.ZeroFreeGlobalAllocUnicode(unmanagedString);
-			}
-
-			string res = isRegisteredUser(userName.Text, password);
-			switch (res)
-			{
-				case "not_a_user":
-                    var messageWindow = new WarningMessageWindow("Please enter valid UserName & Password!");
-                    messageWindow.ShowDialog();
-					break;
-
-				case "normal_user":
-					var window = new NormalUserWindow();
-					window.Show();
-					this.Close();
-					break;
-
-				case "super_user":
-					var window2 = new AdminWindow();
-					window2.Show();
-					this.Close();
-					break;
-			}
-
-		}
+		
 
 
 

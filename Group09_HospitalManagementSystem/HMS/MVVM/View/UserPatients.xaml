@@ -40,7 +40,7 @@
             </Button>
 
             <!--Add New Patient Button-->
-            <Button Style="{StaticResource pagingButton}" Margin="740 0" Click="AddMemberButton_Click">
+            <Button Style="{StaticResource pagingButton}" Margin="460 0" Click="AddMemberButton_Click">
                 <StackPanel Orientation="Horizontal">
                     <icon:PackIconMaterial Kind="Plus" Style="{StaticResource menuButtonIcon}" Margin="10 5"/>
                     <TextBlock Text="Add New Patient" VerticalAlignment="Center"/>
