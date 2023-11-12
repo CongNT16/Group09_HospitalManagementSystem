@@ -192,12 +192,8 @@ D:\FPT\PRN221\HospitalManagementSystem v3\Group09_HospitalManagementSystem\HMS\b
 D:\FPT\PRN221\HospitalManagementSystem v3\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\appsettings.json
 D:\FPT\PRN221\HospitalManagementSystem v3\Group09_HospitalManagementSystem\HMS\obj\Debug\net7.0-windows\MVVM\View\Patients\AddPatientWindow.g.cs
 D:\FPT\PRN221\HospitalManagementSystem v3\Group09_HospitalManagementSystem\HMS\obj\Debug\net7.0-windows\MVVM\View\Patients\AddPatientWindow.baml
-D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\Images\add-doctor.mp4
-D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\Images\switching-between-tabs-admin.mp4
-D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\Images\add-patient.mp4
 D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\Images\edit-profile.mp4
 D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\Images\patient-profile.mp4
-D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\Images\switching-between-tabs.mp4
 D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\HMS.exe
 D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\appsettings.json
 D:\FPT\PRN221\Group09_HospitalManagementSystem\Group09_HospitalManagementSystem\HMS\bin\Debug\net7.0-windows\HMS.deps.json

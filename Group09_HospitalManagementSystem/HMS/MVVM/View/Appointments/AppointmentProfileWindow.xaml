@@ -16,11 +16,11 @@
     <Grid>
 
         <!--Background-->
-        <Border CornerRadius="10" >
+        <Border  >
             <Border.Background>
                 <LinearGradientBrush>
-                    <GradientStop Color="#26abff" Offset="0.0"/>
-                    <GradientStop Color="#5579c6" Offset="1"/>
+                    <GradientStop Color="#ffffff" Offset="0.0"/>
+                    <GradientStop Color="#ffffff" Offset="0.0"/>
                 </LinearGradientBrush>
             </Border.Background>
 

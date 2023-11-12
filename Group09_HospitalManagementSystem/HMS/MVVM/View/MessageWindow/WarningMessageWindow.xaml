@@ -9,12 +9,12 @@
         Title="WarningMessageWindow" Height="200" Width="400" WindowStartupLocation="CenterScreen"
         WindowStyle="None"
         Background="Transparent">
-    <Border CornerRadius="10">
+    <Border >
 
         <Border.Background>
             <LinearGradientBrush>
-                <GradientStop Color="#d2f4cb" Offset="0.0"/>
-                <GradientStop Color="#FFE6CF38" Offset="1"/>
+                <GradientStop Color="#ffffff" Offset="0.0"/>
+                <GradientStop Color="#ffffff" Offset="0.0"/>
             </LinearGradientBrush>
         </Border.Background>
 
