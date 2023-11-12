@@ -118,9 +118,12 @@ namespace HMS.MVVM.ViewModel
 				{
 					var _pat = context.Patients.Single(x => x.IsPatientSelected == true);
 					patId = _pat.Id;
-					context.Prescriptions.Add(new Model.Prescription { Id = prescripId, PrescribedDate = PrescribedDate, PatientId = patId });
-					context.SaveChanges();
-				}
+                    var newPrescription = new Model.Prescription { PrescribedDate = PrescribedDate, PatientId = patId };
+                    context.Prescriptions.Add(newPrescription);
+                    context.SaveChanges();
+
+                    prescripId = newPrescription.Id;
+                }
 			}
 
 			using (DataContext context = new DataContext())
@@ -158,23 +161,42 @@ namespace HMS.MVVM.ViewModel
 						messageWindow.ShowDialog();
 					}
 				}
-				else
-				{
-					Dosage dsg = new Dosage { DrugId = drg.Id, DrugType = DrugType, Dose = Convert.ToDouble(Dose), Duration = Convert.ToDouble(Duration_), PrescriptionId = prescripId, Comments = Comments };
-					context.Dosages.Add(dsg);
+                else
+                {
+                    using (DataContext _context = new DataContext())
+                    {
+                        var existingPrescription = _context.Prescriptions.FirstOrDefault(p => p.Id == prescripId);
 
-					var messageWindow = new MessageWindow($"Drug Id: \t{drg.Id}\nDrug Name: \t{DrugName}\nDose: \t{Dose}\nPresc ID: \t{prescripId}\nComments: \t{Comments}");
-					messageWindow.ShowDialog();
+                        if (existingPrescription != null)
+                        {
+                            Dosage dsg = new Dosage
+                            {
+                                DrugId = drg.Id,
+                                DrugType = DrugType,
+                                Dose = Convert.ToDouble(Dose),
+                                Duration = Convert.ToDouble(Duration_),
+                                PrescriptionId = prescripId,
+                                Comments = Comments
+                            };
 
-					context.SaveChanges();
+                            context.Dosages.Add(dsg);
+
+                            var messageWindow = new MessageWindow($"Drug Id: \t{drg.Id}\nDrug Name: \t{DrugName}\nDose: \t{Dose}\nPresc ID: \t{prescripId}\nComments: \t{Comments}");
+                            messageWindow.ShowDialog();
+
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            var warningWindow = new WarningMessageWindow("Prescription ID does not exist.");
+                            warningWindow.ShowDialog();
+                        }
+                    }
+                }
 
 
 
-				}
-                
-                       
-				
-				Dosages.Clear();
+                Dosages.Clear();
 				foreach (var _dsg in context.Dosages.Where(x => x.PrescriptionId == prescripId))
 				{
 					Dosages.Add(_dsg);
@@ -195,14 +217,16 @@ namespace HMS.MVVM.ViewModel
 			if (!isPrescriptionCreated)
 			{
 				isPrescriptionCreated = true;
-				prescripId = random.Next(100, 10000);
 				using (DataContext context = new DataContext())
 				{
 					var _pat = context.Patients.Single(x => x.IsPatientSelected == true);
 					patId = _pat.Id;
-					context.Prescriptions.Add(new Model.Prescription { Id = prescripId, PrescribedDate = PrescribedDate, PatientId = patId });
-					context.SaveChanges();
-				}
+                    var newPrescription = new Model.Prescription { PrescribedDate = PrescribedDate, PatientId = patId };
+                    context.Prescriptions.Add(newPrescription);
+                    context.SaveChanges();
+
+                    prescripId = newPrescription.Id;
+                }
 			}
 
 			using (DataContext context = new DataContext())
@@ -273,8 +297,9 @@ namespace HMS.MVVM.ViewModel
 
 		public AddPrescriptionWindowVM()
 		{
-			string dateString = "2023-04-14";
-			DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime localTime = DateTime.Now;
+            string dateString = localTime.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
 			PrescribedDate = date;
 
 			DrugTypes = new List<string> { "Liquid", "Tablet", "Capsules", "Injections", "Others" };

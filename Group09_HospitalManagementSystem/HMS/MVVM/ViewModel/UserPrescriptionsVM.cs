@@ -41,7 +41,7 @@ namespace HMS.MVVM.ViewModel
 		void ExecuteRefreshListCommand()
 		{
 			
-			var messageWindow = new MessageWindow("You clicked refresh 🔃");
+			var messageWindow = new MessageWindow("You clicked refresh");
 			messageWindow.ShowDialog();
 
 			Read();

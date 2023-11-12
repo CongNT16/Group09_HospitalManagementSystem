@@ -4,7 +4,7 @@
              xmlns:local="clr-namespace:HMS"
              xmlns:vm="clr-namespace:HMS.MVVM.ViewModel"
              xmlns:view="clr-namespace:HMS.MVVM.View"
-             StartupUri="MVVM/View/SplashScreenWindow.xaml">
+             StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
 

@@ -15,8 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Images\add-doctor.mp4" />
-    <None Remove="Images\add-patient.mp4" />
     <None Remove="Images\appointment.jpg" />
     <None Remove="Images\appointment2.png" />
     <None Remove="Images\blood-test.png" />
@@ -34,8 +32,6 @@
     <None Remove="Images\prescription.png" />
     <None Remove="Images\prescription2.png" />
     <None Remove="Images\success.png" />
-    <None Remove="Images\switching-between-tabs-admin.mp4" />
-    <None Remove="Images\switching-between-tabs.mp4" />
     <None Remove="Images\userImage.png" />
     <None Remove="Images\warning.png" />
   </ItemGroup>
@@ -61,12 +57,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\add-doctor.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\switching-between-tabs-admin.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Images\appointment.jpg" />
     <Resource Include="Images\appointment2.png" />
     <Resource Include="Images\blood-test.png" />
@@ -82,16 +72,10 @@
     <Resource Include="Images\prescription.png" />
     <Resource Include="Images\prescription2.png" />
     <Resource Include="Images\success.png" />
-    <Content Include="Images\add-patient.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Images\edit-profile.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\patient-profile.mp4">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\switching-between-tabs.mp4">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Resource Include="Images\userImage.png" />

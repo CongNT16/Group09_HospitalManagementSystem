@@ -189,16 +189,18 @@ namespace HMS.MVVM.ViewModel
 				DoctorFee = $"Doctor Fee             : LKR {_docFee}";
 
 				double _testFee = 0;
-				foreach (var presc in prescs)
-				{
-					
-					foreach (var medTest in context.MedicalTests.Where(x => x.PrescriptionId == presc.Id))
-					{
-						_testFee += context.Tests.Single(x => x.Id == medTest.TestId).Fee;
-					}
+                var allMedicalTests = context.MedicalTests.ToList();
+                var allTests = context.Tests.ToList();
 
-				}
-				TestFee = $"Test Fee                  : LKR {_testFee}";
+                foreach (var presc in prescs)
+                {
+                    foreach (var medTest in allMedicalTests.Where(x => x.PrescriptionId == presc.Id))
+                    {
+                        _testFee += allTests.Single(x => x.Id == medTest.TestId).Fee;
+                    }
+                }
+
+                TestFee = $"Test Fee                  : LKR {_testFee}";
 
 				HospitalFee = $"Hospital Fee (10%) : LKR {(_docFee + _testFee) * 0.1}";
 

@@ -16,7 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using HMS.MVVM.View.UserGuides;
 
 namespace HMS
 {
@@ -40,9 +39,9 @@ namespace HMS
 
 		public NormalUserWindow()
 		{
-            var guideWindow = new NormalUserGuideWindow();
-	    guideWindow.Topmost = true;
-            guideWindow.Show();
+            //var guideWindow = new NormalUserGuideWindow();
+			//guideWindow.Topmost = true;
+            //guideWindow.Show();
 
             DataContext = new NormalUserWindowVM();
 			InitializeComponent();

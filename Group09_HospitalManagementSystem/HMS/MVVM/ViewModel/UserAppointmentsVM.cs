@@ -107,18 +107,52 @@ namespace HMS.MVVM.ViewModel
 		}
 
 
-		public void Read()
-		{
-			using (DataContext context = new DataContext())
-			{
-				
-				_appointmentsData.Clear();
-				foreach (var app in context.Appointments)
-				{
-					_appointmentsData.Add(app);
-				}
-			}
+        public void Read()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _appointmentsData.Clear();
 
-		}
-	}
+                var query = from app in context.Appointments
+                            join doctor in context.Doctors on app.DoctorId equals doctor.Id
+                            join patient in context.Patients on app.PatientId equals patient.Id
+                            select new Appointment
+                            {
+                                Id = app.Id,
+                                AppointedDate = app.AppointedDate,
+                                IsAppointmentSelected = app.IsAppointmentSelected,
+                                DoctorId = app.DoctorId,
+                                PatientId = app.PatientId,
+                                Patient = new Patient
+                                {
+                                    Id = patient.Id,
+                                    FullName = patient.FullName,
+                                    Email = patient.Email,
+                                    BirthDay = patient.BirthDay,
+                                    Phone = patient.Phone,
+                                    Gender = patient.Gender,
+                                    BloodGroup = patient.BloodGroup,
+                                    Address = patient.Address,
+                                    Weight = patient.Weight,
+                                    Height = patient.Height,
+                                    AdmittedDate = patient.AdmittedDate,
+                                    IsPatientSelected = patient.IsPatientSelected
+                                },
+                                Doctor = new Doctor
+                                {
+                                    Id = doctor.Id,
+                                    Name = doctor.Name,
+                                    Fee = doctor.Fee,
+                                    IsDoctorSelected = doctor.IsDoctorSelected
+                                }
+                            };
+
+                foreach (var app in query)
+                {
+                    _appointmentsData.Add(app);
+                }
+            }
+        }
+
+    }
 }

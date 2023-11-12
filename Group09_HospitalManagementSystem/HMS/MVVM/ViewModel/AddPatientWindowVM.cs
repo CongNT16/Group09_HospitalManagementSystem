@@ -159,7 +159,7 @@ namespace HMS.MVVM.ViewModel
 				{
 					context.Patients.Add(new Model.Patient { FullName = _fullName, Email = _email, BirthDay = _dateOfBirth.ToShortDateString(), Gender = _gender[0], Phone = _phone, BloodGroup = _blood, Address = _address, Weight = Double.Parse(_weight), Height = Double.Parse(_height) });
 					context.SaveChanges();
-					var messageWindow = new MessageWindow("Refresh the student records to see the changes!");
+					var messageWindow = new MessageWindow("Refresh the patients records to see the changes!");
 					messageWindow.ShowDialog();
 
 					Close?.Invoke();

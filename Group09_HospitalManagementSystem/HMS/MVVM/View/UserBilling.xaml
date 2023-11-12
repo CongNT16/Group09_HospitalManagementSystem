@@ -18,18 +18,17 @@
                                        DockPanel.Dock="Top" TextAlignment="Center" />
 
         <!--Hint-->
-        <TextBlock Text="* Note : Billings are automatically calculated based on each patients's purchases" Foreground="Blue"/>
         <!--Data-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" IsReadOnly="True"
                    RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" ItemsSource="{Binding BillsData}" AutoGenerateColumns="False" MaxHeight="380">
             <DataGrid.Columns>
 
                 <DataGridTextColumn Binding="{Binding Id}" Header="# ID"/>
+                <DataGridTextColumn Binding="{Binding Patient.FullName}" Header="Patient Name"/>
                 <DataGridTextColumn Binding="{Binding BillAmount}" Header="Bill Amount"/>
                 <DataGridTextColumn Binding="{Binding PaymentMode}" Header="Payment Mode"/>
                 <DataGridTextColumn Binding="{Binding Status}" Header="Is Paid"/>
                 <DataGridTextColumn Binding="{Binding PaymentDate}" Header="Payment Date"/>
-                <DataGridTextColumn Binding="{Binding PatientId}" Header="Patient Id"/>
 
             </DataGrid.Columns>
         </DataGrid>

@@ -35,7 +35,7 @@ namespace HMS.MVVM.ViewModel
 
 		void ExecuteRefreshListCommand()
 		{
-			var messageWindow = new MessageWindow("You clicked refresh 🔃");
+			var messageWindow = new MessageWindow("You clicked refresh");
 			messageWindow.ShowDialog();
 
 			Read();
@@ -58,18 +58,47 @@ namespace HMS.MVVM.ViewModel
 		}
 
 
-		public void Read()
-		{
-			using (DataContext context = new DataContext())
-			{
-				//students = context.Students.ToList();
-				_billsData.Clear();
-				foreach (var bi in context.Bills)
-				{
-					_billsData.Add(bi);
-				}
-			}
+        public void Read()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _billsData.Clear();
 
-		}
-	}
+                // Thực hiện truy vấn liên kết giữa bảng Bills và bảng Patients
+                var query = from bill in context.Bills
+                            join patient in context.Patients on bill.PatientId equals patient.Id
+                            select new Bill
+                            {
+                                Id = bill.Id,
+                                BillAmount = bill.BillAmount,
+                                PaymentMode = bill.PaymentMode,
+                                Status = bill.Status,
+                                PaymentDate = bill.PaymentDate,
+                                IsBillSelected = bill.IsBillSelected,
+                                PatientId = bill.PatientId,
+                                Patient = new Patient
+                                {
+                                    Id = patient.Id,
+                                    FullName = patient.FullName,
+                                    Email = patient.Email,
+                                    BirthDay = patient.BirthDay,
+                                    Phone = patient.Phone,
+                                    Gender = patient.Gender,
+                                    BloodGroup = patient.BloodGroup,
+                                    Address = patient.Address,
+                                    Weight = patient.Weight,
+                                    Height = patient.Height,
+                                    AdmittedDate = patient.AdmittedDate,
+                                    IsPatientSelected = patient.IsPatientSelected
+                                }
+                            };
+
+                foreach (var bill in query)
+                {
+                    _billsData.Add(bill);
+                }
+            }
+        }
+
+    }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kWHga4u2qF4QIT+u0zz2WdQlJkCzHoSOKsEU1vZ4vP6buta4Wk3xEpS5TIPw94HxfEO/9myhmvtWeKekjPMPqA==",
+  "dgSpecHash": "aNlZ5gceHsf2+HaLaqmn2Y5vUENTNb+4R+dQB1WeqMvF2jKLJTwyQgDcqCuDbML6uCsxffduU5J1vXPiohOnyA==",
   "success": true,
-  "projectFilePath": "D:\\FPT\\PRN221\\HospitalManagementSystem v3\\Group09_HospitalManagementSystem\\HMS\\HMS.csproj",
+  "projectFilePath": "D:\\FPT\\PRN221\\Group09_HospitalManagementSystem\\Group09_HospitalManagementSystem\\HMS\\HMS.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\tuyet\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\tuyet\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

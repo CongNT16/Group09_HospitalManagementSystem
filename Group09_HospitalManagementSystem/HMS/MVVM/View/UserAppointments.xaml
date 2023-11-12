@@ -17,15 +17,14 @@
                                        DockPanel.Dock="Top" TextAlignment="Center" />
 
         <!--Hint-->
-        <TextBlock Text="* Note : Appointments can be Added in the Patients tab" Foreground="Blue"/>
         <!--Data-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" IsReadOnly="True"
                               RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" ItemsSource="{Binding AppointmentsData}" AutoGenerateColumns="False" MaxHeight="380">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Id}" Header="# ID"/>
                 <DataGridTextColumn Binding="{Binding AppointedDate}" Header="Appointment Date"/>
-                <DataGridTextColumn Binding="{Binding DoctorId}" Header="Doctor ID"/>
-                <DataGridTextColumn Binding="{Binding PatientId}" Header="Patient ID"/>
+                <DataGridTextColumn Binding="{Binding Doctor.Name}" Header="Doctor Name"/>
+                <DataGridTextColumn Binding="{Binding Patient.FullName}" Header="Patient Name"/>
 
                 <DataGridTemplateColumn Width="140" Header="Action">
                     <DataGridTemplateColumn.CellTemplate>

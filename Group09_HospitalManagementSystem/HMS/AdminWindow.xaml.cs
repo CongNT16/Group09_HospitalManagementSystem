@@ -1,5 +1,4 @@
-﻿using HMS.MVVM.View.UserGuides;
-using HMS.MVVM.ViewModel;
+﻿using HMS.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,9 +35,9 @@ namespace HMS
 
 		public AdminWindow()
 		{
-			var userGuide = new AdminUserGuide1();
-			userGuide.Topmost = true;
-			userGuide.Show();
+			//var userGuide = new AdminUserGuide1();
+			//userGuide.Topmost = true;
+			//userGuide.Show();
 
 			DataContext = new AdminWindowVM();
 			InitializeComponent();
