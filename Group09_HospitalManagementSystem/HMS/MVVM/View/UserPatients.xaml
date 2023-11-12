@@ -7,7 +7,7 @@
              xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:vm="clr-namespace:HMS.MVVM.ViewModel"
              mc:Ignorable="d" 
-                  xmlns:fa="http://schemas.fontawesome.io/icons/"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              d:DesignHeight="450" d:DesignWidth="1000"
              x:Name="userPatients_window">
     <UserControl.DataContext>
@@ -26,6 +26,17 @@
                         <fa:ImageAwesome Icon="Refresh" Width="15" Foreground="White"/>
                     </StackPanel>
                 </Button.Content>
+            </Button>
+
+            <!-- Search Input -->
+            <TextBox Width="150" Margin="10 0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+            <!-- Search Button -->
+            <Button Width="100" Style="{StaticResource pagingButton}" Command="{Binding SearchCommand}">
+                <StackPanel>
+                    <TextBlock Text="Search"/>
+                    <fa:ImageAwesome Icon="Search" Width="15" Foreground="White"/>
+                </StackPanel>
             </Button>
 
             <!--Add New Patient Button-->

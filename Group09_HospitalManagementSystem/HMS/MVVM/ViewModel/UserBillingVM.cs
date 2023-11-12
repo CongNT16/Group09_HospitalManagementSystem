@@ -41,8 +41,75 @@ namespace HMS.MVVM.ViewModel
 			Read();
 		}
 
-		// Delete prescription command using prism core package
-		private DelegateCommand<Bill> _deleteBillCommand;
+        private string _searchText;
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private DelegateCommand _searchCommand;
+
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _billsData.Clear();
+
+                var query = from bill in context.Bills
+                            join patient in context.Patients on bill.PatientId equals patient.Id
+                            where patient.FullName.Contains(SearchText)
+                            select new Bill
+                            {
+                                Id = bill.Id,
+                                BillAmount = bill.BillAmount,
+                                PaymentMode = bill.PaymentMode,
+                                Status = bill.Status,
+                                PaymentDate = bill.PaymentDate,
+                                IsBillSelected = bill.IsBillSelected,
+                                PatientId = bill.PatientId,
+                                Patient = new Patient
+                                {
+                                    Id = patient.Id,
+                                    FullName = patient.FullName,
+                                    Email = patient.Email,
+                                    BirthDay = patient.BirthDay,
+                                    Phone = patient.Phone,
+                                    Gender = patient.Gender,
+                                    BloodGroup = patient.BloodGroup,
+                                    Address = patient.Address,
+                                    Weight = patient.Weight,
+                                    Height = patient.Height,
+                                    AdmittedDate = patient.AdmittedDate,
+                                    IsPatientSelected = patient.IsPatientSelected
+                                }
+                            };
+
+                foreach (var bill in query)
+                {
+                    _billsData.Add(bill);
+                }
+            }
+        }
+
+        //private void Search()
+        //{
+            
+        //}
+
+        // Delete prescription command using prism core package
+        private DelegateCommand<Bill> _deleteBillCommand;
 		public DelegateCommand<Bill> DeleteBillCommand =>
 			_deleteBillCommand ?? (_deleteBillCommand = new DelegateCommand<Bill>(ExecuteBillCommand));
 
@@ -64,7 +131,6 @@ namespace HMS.MVVM.ViewModel
             {
                 _billsData.Clear();
 
-                // Thực hiện truy vấn liên kết giữa bảng Bills và bảng Patients
                 var query = from bill in context.Bills
                             join patient in context.Patients on bill.PatientId equals patient.Id
                             select new Bill

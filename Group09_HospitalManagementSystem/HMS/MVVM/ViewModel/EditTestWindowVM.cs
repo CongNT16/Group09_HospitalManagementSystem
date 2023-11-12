@@ -86,7 +86,7 @@ namespace HMS.MVVM.ViewModel
                     messageWindow2.ShowDialog();
                 }
 			}
-			var messageWindow = new MessageWindow("Refresh the Test records to see the changes 😊");
+			var messageWindow = new MessageWindow("Refresh the Test records to see the changes ");
             messageWindow.ShowDialog();
             Close?.Invoke();
 		}

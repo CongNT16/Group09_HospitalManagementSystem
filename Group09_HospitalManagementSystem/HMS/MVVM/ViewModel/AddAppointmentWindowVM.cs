@@ -63,7 +63,7 @@ namespace HMS.MVVM.ViewModel
 
 			}
 			
-			var messageWindow = new MessageWindow("Please click 'Refresh' to see the updated Appointment list 😊");
+			var messageWindow = new MessageWindow("Please click 'Refresh' to see the updated Appointment list");
 			messageWindow.ShowDialog();
 
 			Close?.Invoke();

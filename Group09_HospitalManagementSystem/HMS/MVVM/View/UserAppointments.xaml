@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMS.MVVM.View"
              xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:vm="clr-namespace:HMS.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
@@ -17,6 +18,21 @@
                                        DockPanel.Dock="Top" TextAlignment="Center" />
 
         <!--Hint-->
+        <StackPanel>
+            <!-- ... -->
+            <StackPanel Orientation="Horizontal" Margin="10 5">
+                <!-- Search Input -->
+                <TextBox Width="150" Margin="10 0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+                <!-- Search Button -->
+                <Button Width="100" Style="{StaticResource pagingButton}" Command="{Binding SearchCommand}">
+                    <StackPanel>
+                        <TextBlock Text="Search"/>
+                        <fa:ImageAwesome Icon="Search" Width="15" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
         <!--Data-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" IsReadOnly="True"
                               RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" ItemsSource="{Binding AppointmentsData}" AutoGenerateColumns="False" MaxHeight="380">

@@ -40,7 +40,7 @@ namespace HMS.MVVM.ViewModel
 
 		void ExecuteRefreshListCommand()
 		{
-            var messageWindow = new MessageWindow("Users list has been refreshed 🔃");
+            var messageWindow = new MessageWindow("Users list has been refreshed");
             messageWindow.ShowDialog();
             Read();
 		}

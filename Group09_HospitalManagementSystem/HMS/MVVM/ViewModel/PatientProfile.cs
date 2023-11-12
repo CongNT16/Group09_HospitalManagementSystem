@@ -112,7 +112,7 @@ namespace HMS.MVVM.ViewModel
 
 		void ExecuteRefreshCommand()
 		{
-            var messageWindow = new MessageWindow("Patient list has been refreshed 🔃");
+            var messageWindow = new MessageWindow("Patient list has been refreshed");
             messageWindow.ShowDialog();
 
             using (DataContext context = new DataContext())

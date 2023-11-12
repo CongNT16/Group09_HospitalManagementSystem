@@ -47,8 +47,67 @@ namespace HMS.MVVM.ViewModel
 			Read();
 		}
 
-		// Delete patient command using prism core package
-		private DelegateCommand<Prescription> _deletePrescriptionommand;
+        private string _searchText;
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private DelegateCommand _searchCommand;
+
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _prescriptionsData.Clear();
+
+                var query = from prescription in context.Prescriptions
+                            join patient in context.Patients on prescription.PatientId equals patient.Id
+                            where patient.FullName.Contains(SearchText)
+                            select new Prescription
+                            {
+                                Id = prescription.Id,
+                                PrescribedDate = prescription.PrescribedDate,
+                                IsPrescriptionSelected = prescription.IsPrescriptionSelected,
+                                PatientId = prescription.PatientId,
+                                Patient = new Patient
+                                {
+                                    Id = patient.Id,
+                                    FullName = patient.FullName,
+                                    Email = patient.Email,
+                                    BirthDay = patient.BirthDay,
+                                    Phone = patient.Phone,
+                                    Gender = patient.Gender,
+                                    BloodGroup = patient.BloodGroup,
+                                    Address = patient.Address,
+                                    Weight = patient.Weight,
+                                    Height = patient.Height,
+                                    AdmittedDate = patient.AdmittedDate,
+                                    IsPatientSelected = patient.IsPatientSelected
+                                }
+                            };
+
+                foreach (var pres in query)
+                {
+                    _prescriptionsData.Add(pres);
+                }
+            }
+        }
+
+        // Delete patient command using prism core package
+        private DelegateCommand<Prescription> _deletePrescriptionommand;
 		public DelegateCommand<Prescription> DeletePrescriptionCommand =>
 			_deletePrescriptionommand ?? (_deletePrescriptionommand = new DelegateCommand<Prescription>(ExecutePrescriptionPatientCommand));
 
@@ -115,7 +174,33 @@ namespace HMS.MVVM.ViewModel
 			{
 				
 				_prescriptionsData.Clear();
-				foreach (var pres in context.Prescriptions)
+
+                var query = from prescription in context.Prescriptions
+                            join patient in context.Patients on prescription.PatientId equals patient.Id
+                            select new Prescription
+                            {
+                                Id = prescription.Id,
+                                PrescribedDate = prescription.PrescribedDate,
+                                IsPrescriptionSelected = prescription.IsPrescriptionSelected,
+                                PatientId = prescription.PatientId,
+                                Patient = new Patient
+                                {
+                                    Id = patient.Id,
+                                    FullName = patient.FullName,
+                                    Email = patient.Email,
+                                    BirthDay = patient.BirthDay,
+                                    Phone = patient.Phone,
+                                    Gender = patient.Gender,
+                                    BloodGroup = patient.BloodGroup,
+                                    Address = patient.Address,
+                                    Weight = patient.Weight,
+                                    Height = patient.Height,
+                                    AdmittedDate = patient.AdmittedDate,
+                                    IsPatientSelected = patient.IsPatientSelected
+                                }
+                            };
+
+                foreach (var pres in query)
 				{
 					_prescriptionsData.Add(pres);
 				}

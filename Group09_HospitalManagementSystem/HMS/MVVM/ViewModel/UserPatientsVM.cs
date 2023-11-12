@@ -31,13 +31,47 @@ namespace HMS.MVVM.ViewModel
 			}
 		}
 
-		private DelegateCommand _refreshListCommand;
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _patientData.Clear();
+                var query = from pat in context.Patients
+                            where pat.FullName.Contains(SearchText) || pat.Email.Contains(SearchText)
+                            select pat;
+
+                foreach (var pat in query)
+                {
+                    _patientData.Add(pat);
+                }
+            }
+        }
+
+        private DelegateCommand _refreshListCommand;
 		public DelegateCommand RefreshListCommand =>
 			_refreshListCommand ?? (_refreshListCommand = new DelegateCommand(ExecuteRefreshListCommand));
 
 		void ExecuteRefreshListCommand()
 		{
-			var messageWindow = new MessageWindow("Patient list has been refreshed 🔃");
+			var messageWindow = new MessageWindow("Patient list has been refreshed");
 			messageWindow.ShowDialog();
 			Read();
 		}
