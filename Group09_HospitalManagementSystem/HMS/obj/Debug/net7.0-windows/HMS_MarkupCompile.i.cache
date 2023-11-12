@@ -1,0 +1,20 @@
+﻿HMS
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\FPT\PRN221\HospitalManagementSystem v3\Group09_HospitalManagementSystem\HMS\obj\Debug\net7.0-windows\
+HMS
+none
+false
+TRACE;DEBUG;NET;NET7_0;NETCOREAPP
+D:\FPT\PRN221\HospitalManagementSystem v3\Group09_HospitalManagementSystem\HMS\App.xaml
+44-1176783756
+61024137279
+93-1365492800
+253-421731758
+AdminWindow.xaml;MainWindow.xaml;MVVM\View\AdminDoctors.xaml;MVVM\View\AdminDrugs.xaml;MVVM\View\AdminTests.xaml;MVVM\View\AdminUsers.xaml;MVVM\View\Appointments\AddAppointmentWindow.xaml;MVVM\View\Appointments\AppointmentProfileWindow.xaml;MVVM\View\Doctors\AddDoctorWindow.xaml;MVVM\View\Doctors\EditDoctorWindow.xaml;MVVM\View\Drugs\AddDrugWindow.xaml;MVVM\View\MessageWindow\MessageWindow.xaml;MVVM\View\MessageWindow\WarningMessageWindow.xaml;MVVM\View\Patients\AddPatientWindow.xaml;MVVM\View\Patients\EditPatientWindow.xaml;MVVM\View\Patients\PatientProfileWindow.xaml;MVVM\View\Prescriptions\AddPrescriptionWindow.xaml;MVVM\View\Prescriptions\PrescriptionProfileWindow.xaml;MVVM\View\SplashScreenWindow.xaml;MVVM\View\Tests\AddTestWindow.xaml;MVVM\View\Tests\EditTestWindow.xaml;MVVM\View\UserAppointments.xaml;MVVM\View\UserBilling.xaml;MVVM\View\UserControls\InfoCard.xaml;MVVM\View\UserControls\MyOption.xaml;MVVM\View\UserControls\MyTextBox.xaml;MVVM\View\UserControls\Order.xaml;MVVM\View\UserControls\Order2.xaml;MVVM\View\UserDashboard.xaml;MVVM\View\UserGuides\AdminUserGuide1.xaml;MVVM\View\UserGuides\AdminUserGuide2.xaml;MVVM\View\UserGuides\NormalUserGuideWindow.xaml;MVVM\View\UserGuides\NormalUserGuideWindow2.xaml;MVVM\View\UserGuides\NormalUserGuideWindow3.xaml;MVVM\View\UserGuides\NormalUserGuideWindow4.xaml;MVVM\View\UserPatients.xaml;MVVM\View\UserPrescriptions.xaml;MVVM\View\Users\AddUserWindow.xaml;MVVM\View\Users\EditUserWindow.xaml;NormalUserWindow.xaml;Themes\AddPatientTheme.xaml;Themes\DashboardTabTheme.xaml;Themes\DashboardTheme.xaml;Themes\LoginTheme.xaml;
+
+False
+
