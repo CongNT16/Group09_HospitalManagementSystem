@@ -46,6 +46,31 @@
                 <DataGridTextColumn Binding="{Binding Status}" Header="Is Paid"/>
                 <DataGridTextColumn Binding="{Binding PaymentDate}" Header="Payment Date"/>
 
+                <DataGridTemplateColumn Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Command="{Binding DataContext.UpdatePaymentStatusCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
+                        CommandParameter="{Binding}" Background="#4CAF50">
+                                    <icon:PackIconMaterial Kind="Check" Style="{StaticResource actionButtonIcon}"/>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
     </StackPanel>

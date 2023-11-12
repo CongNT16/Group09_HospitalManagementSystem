@@ -103,9 +103,31 @@ namespace HMS.MVVM.ViewModel
             }
         }
 
+        private DelegateCommand<Bill> _updatePaymentStatusCommand;
+        public DelegateCommand<Bill> UpdatePaymentStatusCommand =>
+            _updatePaymentStatusCommand ?? (_updatePaymentStatusCommand = new DelegateCommand<Bill>(ExecuteUpdatePaymentStatusCommand));
+
+        void ExecuteUpdatePaymentStatusCommand(Bill parameter)
+        {
+            if (parameter != null)
+            {
+                using (DataContext context = new DataContext())
+                {
+                    Bill bill = context.Bills.Single(x => x.Id == parameter.Id);
+                    bill.Status = true; 
+                    context.SaveChanges();
+                }
+                var messageWindow = new MessageWindow($"Payment status for Bill #{parameter.Id} updated to 'Paid'!");
+                messageWindow.ShowDialog();
+
+                Read();
+            }
+        }
+
+
         //private void Search()
         //{
-            
+
         //}
 
         // Delete prescription command using prism core package
