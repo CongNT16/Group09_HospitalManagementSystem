@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HMS.MVVM.View"
              xmlns:icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
              xmlns:vm="clr-namespace:HMS.MVVM.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
@@ -18,6 +19,21 @@
                                        DockPanel.Dock="Top" TextAlignment="Center" />
 
         <!--Hint-->
+        <StackPanel>
+            <!-- ... -->
+            <StackPanel Orientation="Horizontal" Margin="10 5">
+                <!-- Search Input -->
+                <TextBox Width="150" Margin="10 0" Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" HorizontalContentAlignment="Left"/>
+
+                <!-- Search Button -->
+                <Button Width="100" Style="{StaticResource pagingButton}" Command="{Binding SearchCommand}">
+                    <StackPanel>
+                        <TextBlock Text="Search"/>
+                        <fa:ImageAwesome Icon="Search" Width="15" Foreground="White"/>
+                    </StackPanel>
+                </Button>
+            </StackPanel>
+        </StackPanel>
         <!--Data-->
         <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" IsReadOnly="True"
                    RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" ItemsSource="{Binding BillsData}" AutoGenerateColumns="False" MaxHeight="380">
@@ -29,6 +45,31 @@
                 <DataGridTextColumn Binding="{Binding PaymentMode}" Header="Payment Mode"/>
                 <DataGridTextColumn Binding="{Binding Status}" Header="Is Paid"/>
                 <DataGridTextColumn Binding="{Binding PaymentDate}" Header="Payment Date"/>
+
+                <DataGridTemplateColumn Width="140">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button Command="{Binding DataContext.UpdatePaymentStatusCommand, RelativeSource={RelativeSource AncestorType={x:Type UserControl}}}" 
+                        CommandParameter="{Binding}" Background="#4CAF50">
+                                    <icon:PackIconMaterial Kind="Check" Style="{StaticResource actionButtonIcon}"/>
+                                    <Button.Template>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            </Border>
+                                            <ControlTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Status}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                                </DataTrigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Button.Template>
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
 
             </DataGrid.Columns>
         </DataGrid>

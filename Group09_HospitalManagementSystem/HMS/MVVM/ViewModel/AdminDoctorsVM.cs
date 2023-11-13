@@ -38,13 +38,47 @@ namespace HMS.MVVM.ViewModel
 
 		void ExecuteRefreshListCommand()
 		{
-            var messageWindow = new MessageWindow("Doctors list has been refreshed 🔃");
+            var messageWindow = new MessageWindow("Doctors list has been refreshed");
             messageWindow.ShowDialog();
 			Read();
 		}
 
-		// Delete doctor command using prism core package
-		private DelegateCommand<Doctor> _deleteDoctorCommand;
+        private string _searchText;
+        public string SearchText
+        {
+            get { return _searchText; }
+            set
+            {
+                if (_searchText != value)
+                {
+                    _searchText = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private DelegateCommand _searchCommand;
+        public DelegateCommand SearchCommand =>
+            _searchCommand ?? (_searchCommand = new DelegateCommand(ExecuteSearchCommand));
+
+        void ExecuteSearchCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                _doctorsData.Clear();
+                var query = from doc in context.Doctors
+                            where doc.Name.Contains(SearchText)
+                            select doc;
+
+                foreach (var doc in query)
+                {
+                    _doctorsData.Add(doc);
+                }
+            }
+        }
+
+        // Delete doctor command using prism core package
+        private DelegateCommand<Doctor> _deleteDoctorCommand;
 		public DelegateCommand<Doctor> DeleteDoctorCommand =>
 			_deleteDoctorCommand ?? (_deleteDoctorCommand = new DelegateCommand<Doctor>(ExecuteDeleteDoctorCommand));
 

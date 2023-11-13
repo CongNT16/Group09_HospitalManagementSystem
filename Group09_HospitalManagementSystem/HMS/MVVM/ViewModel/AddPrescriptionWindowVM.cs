@@ -259,7 +259,7 @@ namespace HMS.MVVM.ViewModel
 				context.SaveChanges();
 			}
 
-            var messageWindow = new MessageWindow("Please click 'Refresh' to see the updated Prescription list 😊");
+            var messageWindow = new MessageWindow("Please click 'Refresh' to see the updated Prescription list");
             messageWindow.ShowDialog();
          	Close?.Invoke();
 

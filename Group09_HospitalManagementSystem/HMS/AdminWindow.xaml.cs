@@ -1,4 +1,5 @@
-﻿using HMS.MVVM.ViewModel;
+﻿using HMS.MVVM.Model.Authentication;
+using HMS.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,15 +34,14 @@ namespace HMS
 			
 		}
 
-		public AdminWindow()
+        public User CurrentUser { get; set; }
+        
+		public AdminWindow(User user)
 		{
-			//var userGuide = new AdminUserGuide1();
-			//userGuide.Topmost = true;
-			//userGuide.Show();
-
-			DataContext = new AdminWindowVM();
+            CurrentUser = user;
+            DataContext = new AdminWindowVM();
 			InitializeComponent();
-		}
+        }
 
 		private void AddMemberButton_Click(object sender, RoutedEventArgs e)
 		{

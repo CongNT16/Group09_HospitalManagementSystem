@@ -39,7 +39,7 @@ namespace HMS.MVVM.ViewModel
 
 		void ExecuteRefreshListCommand()
 		{
-            var messageWindow = new MessageWindow("Tests list has been refreshed 🔃");
+            var messageWindow = new MessageWindow("Tests list has been refreshed");
             messageWindow.ShowDialog();
             Read();
 		}

@@ -49,34 +49,45 @@ namespace HMS.MVVM.ViewModel
 		public DelegateCommand SaveCommand =>
 			_saveCommand ?? (_saveCommand = new DelegateCommand(ExecuteSaveCommand));
 
-		void ExecuteSaveCommand()
+        void ExecuteSaveCommand()
+        {
+            using (DataContext context = new DataContext())
+            {
+                var selectedDoctor = context.Doctors.FirstOrDefault(x => x.Name == doctorName);
+                var selectedPatient = context.Patients.FirstOrDefault(x => x.IsPatientSelected == true);
+
+                if (selectedDoctor != null && selectedPatient != null)
+                {
+                    context.Appointments.Add(new Model.Appointment
+                    {
+                        DoctorId = selectedDoctor.Id,
+                        PatientId = selectedPatient.Id,
+                        AppointedDate = AppointmentDate
+                    });
+                    context.SaveChanges();
+                }
+                else
+                {
+                    // Handle the case where the doctor or patient is not found.
+                    // You may want to show an error message or log a message.
+                }
+            }
+
+            var messageWindow = new MessageWindow("Please click 'Refresh' to see the updated Appointment list");
+            messageWindow.ShowDialog();
+
+            Close?.Invoke();
+        }
+
+
+
+
+        public AddAppointmentWindowVM()
 		{
-			using (DataContext context = new DataContext())
-			{
-				context.Appointments.Add(new Model.Appointment
-				{
-					DoctorId = context.Doctors.Single(x => x.Name == doctorName).Id,
-					PatientId = context.Patients.Single(x => x.IsPatientSelected == true).Id,
-					AppointedDate = AppointmentDate
-				});
-				context.SaveChanges();
-
-			}
-			
-			var messageWindow = new MessageWindow("Please click 'Refresh' to see the updated Appointment list 😊");
-			messageWindow.ShowDialog();
-
-			Close?.Invoke();
-
-		}
-
-
-
-		public AddAppointmentWindowVM()
-		{
-			string dateString = "2023-04-14";
-			DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-			AppointmentDate = date;
+            DateTime localTime = DateTime.Now;
+            string dateString = localTime.ToString("yyyy-MM-dd HH:mm:ss");
+            DateTime date = DateTime.ParseExact(dateString, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+            AppointmentDate = date;
 
 			DoctorNames = new List<string> { };
 			using (DataContext context = new DataContext())

@@ -10,10 +10,8 @@ namespace HMS.MVVM.Model.Authentication
 	public class User
 	{
 		
-		public User(string userName, string password, bool isSuperUser) // User constructor with a random id
+		public User(string userName, string password, bool isSuperUser)
 		{
-			Random r = new Random();
-			this.UserId = r.Next(0, 10000);
 			this.UserName = userName;
 			this.Password = password;
 			IsSuperUser = isSuperUser;

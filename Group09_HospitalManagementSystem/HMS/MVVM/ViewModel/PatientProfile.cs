@@ -112,7 +112,7 @@ namespace HMS.MVVM.ViewModel
 
 		void ExecuteRefreshCommand()
 		{
-            var messageWindow = new MessageWindow("Patient list has been refreshed 🔃");
+            var messageWindow = new MessageWindow("Patient list has been refreshed");
             messageWindow.ShowDialog();
 
             using (DataContext context = new DataContext())
@@ -186,7 +186,7 @@ namespace HMS.MVVM.ViewModel
 				{
 					_docFee += context.Doctors.Single(x => x.Id == app.DoctorId).Fee;
 				}
-				DoctorFee = $"Doctor Fee             : LKR {_docFee}";
+				DoctorFee = $"Doctor Fee             : VND {_docFee}";
 
 				double _testFee = 0;
                 var allMedicalTests = context.MedicalTests.ToList();
@@ -200,11 +200,11 @@ namespace HMS.MVVM.ViewModel
                     }
                 }
 
-                TestFee = $"Test Fee                  : LKR {_testFee}";
+                TestFee = $"Test Fee                  : VND {_testFee}";
 
-				HospitalFee = $"Hospital Fee (10%) : LKR {(_docFee + _testFee) * 0.1}";
+				HospitalFee = $"Hospital Fee (10%) : VND {(_docFee + _testFee) * 0.1}";
 
-				TotalFee = $"Total Fee                 : LKR {_docFee + _testFee + (_docFee + _testFee) * 0.1}";
+				TotalFee = $"Total Fee                 : VND {_docFee + _testFee + (_docFee + _testFee) * 0.1}";
 
 
 				Random random = new Random();
@@ -212,7 +212,7 @@ namespace HMS.MVVM.ViewModel
 				var bill = new Bill
 				{
 					BillAmount = _docFee + _testFee + (_docFee + _testFee) * 0.1,
-					PaymentMode = (random.Next(2) == 0) ? "Cash" : "Card",
+					PaymentMode = (random.Next(2) == 0) ? "Cash" : "Cash",
 					Status = false,
 					PaymentDate = DateTime.Now,
 					PatientId = Convert.ToInt32(PatId)
@@ -224,7 +224,7 @@ namespace HMS.MVVM.ViewModel
 				{
 					var _b = context.Bills.Single(x => x.Id == Convert.ToInt32(PatId));
 					_b.BillAmount = _docFee + _testFee + (_docFee + _testFee) * 0.1;
-					_b.PaymentMode = (random.Next(2) == 0) ? "Cash" : "Card";
+					_b.PaymentMode = (random.Next(2) == 0) ? "Cash" : "Cash";
 					_b.Status = false;
 					_b.PaymentDate = DateTime.Now;
 					context.SaveChanges();
